@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Running;
 using System;
 using System.Collections.Generic;
@@ -7,49 +8,22 @@ using System.Text;
 
 namespace Benchmark
 {
-    //public class Md5VsSha256
-    //{
-    //    private const int N = 10000;
-    //    private readonly byte[] data;
-
-    //    private readonly SHA256 sha256 = SHA256.Create();
-    //    private readonly MD5 md5 = MD5.Create();
-
-    //    public Md5VsSha256()
-    //    {
-    //        data = new byte[N];
-    //        new Random(42).NextBytes(data);
-    //    }
-
-    //    [Benchmark]
-    //    public byte[] Sha256() => sha256.ComputeHash(data);
-
-    //    [Benchmark]
-    //    public byte[] Md5() => md5.ComputeHash(data);
-    //}
-
-    // [MemoryDiagnoser]    
     /// <summary>
-    /// Benchmarks string concantenation in C#
+    /// Benchmarks techniques for string concantenation in C#.
     /// </summary>
-    /// <remarks>.NET 5 StringBuilder using Append</remarks>
+    /// <remarks>The C# developer concatenates five small strings.</remarks>
     // [SimpleJob(RunStrategy.Monitoring, launchCount: 1, warmupCount: 0, targetCount: 5)]
+    [MemoryDiagnoser] 
     public class StringConcatenation
     {
-
-        //[Params("a", "5266556A586E3272357538782F413F442A472D4B6150645367566B5970337336")]
         public string Data1 { get; set; }
 
-        //[Params("b", "404D635166546A576E5A7234753778214125432A462D4A614E645267556B5870")]
         public string Data2 { get; set; }
 
-        //[Params("c", "4528482B4D6251655468576D5A7134743777217A25432646294A404E63526655")]
         public string Data3 { get; set; }
 
-        //[Params("d", "2F413F4428472B4B6250655368566D597133743677397A244326452948404D63")]
         public string Data4 { get; set; }
 
-        //[Params("e", "7538782F4125442A472D4B6150645367566B5970337336763979244226452848")]
         public string Data5 { get; set; }
 
         public StringConcatenation()
@@ -59,18 +33,26 @@ namespace Benchmark
             Data3 = "c";
             Data4 = "d";
             Data5 = "e";
+            //Data1 = "5266556A586E3272357538782F413F442A472D4B6150645367566B5970337336";
+            //Data2 = "404D635166546A576E5A7234753778214125432A462D4A614E645267556B5870";
+            //Data3 = "4528482B4D6251655468576D5A7134743777217A25432646294A404E63526655";
+            //Data4 = "2F413F4428472B4B6250655368566D597133743677397A244326452948404D63";
+            //Data5 = "7538782F4125442A472D4B6150645367566B5970337336763979244226452848";
         }
 
         [Benchmark]
         public string Interpolation()
         {
-            return $"{Data1} {Data2} {Data3} {Data4} {Data5}";
+            return $"test formatting {Data1} {Data2} {Data3} {Data4} {Data5}";
         }
 
         [Benchmark]
+        public string InterpolationLambda() => $"test formatting {Data1} {Data2} {Data3} {Data4} {Data5}";
+        
+        [Benchmark]
         public string InterpolationSingle()
         {
-            var result = $"{Data1} {Data2} {Data3} {Data4} {Data5}";
+            var result = $"test formatting {Data1} {Data2} {Data3} {Data4} {Data5}";
             return result; 
         }
 
@@ -111,6 +93,9 @@ namespace Benchmark
         {
             return string.Concat(Data1, " ", Data2, " ", Data3, " ", Data4, " ", Data5);
         }
+
+        [Benchmark]
+        public string StringConcatenateLambda() => Data1 + " " + Data2 + " " + Data3 + " " + Data4 + " " + Data5;
 
         [Benchmark]
         public string StringJoin()
@@ -177,40 +162,6 @@ namespace Benchmark
             Data3 = string.Empty;
             Data4 = string.Empty;
             Data5 = string.Empty;
-        }
-    }
-
-    public class StringMaker 
-    {
-        public IEnumerable<string> ValuesForData1 => new[] { "a", "b", "c", "d", "e" };
-        public IEnumerable<char> ValuesForData2 => new[] { 'a', 'b', 'c', 'd', 'e' };
-
-        public IEnumerable<string> ValuesForData3 => new[] {
-            new string(string.Join("", Enumerable.Repeat(0, 100).Select(n => (char)new Random().Next(127)))),
-            new string(string.Join("", Enumerable.Repeat(0, 100).Select(n => (char)new Random().Next(127)))),
-            new string(string.Join("", Enumerable.Repeat(0, 100).Select(n => (char)new Random().Next(127)))),
-            new string(string.Join("", Enumerable.Repeat(0, 100).Select(n => (char)new Random().Next(127)))),
-            new string(string.Join("", Enumerable.Repeat(0, 100).Select(n => (char)new Random().Next(127))))
-        };
-
-        public IEnumerable<string> ValuesForData4 => new[]
-        {
-            "442A472D4B6150645367566B59703373367638792F423F4528482B4D62516554",
-            "217A25432A462D4A614E645267556B58703273357638782F413F4428472B4B62",
-            "743677397A24432646294A404E635266556A586E327235753878214125442A47",
-            "5971337436763979244226452948404D635166546A576E5A7234753778217A25",
-            "67566B59703373357638792F423F4528482B4D6251655468576D5A7134743777"
-        };
-
-        public StringMaker()
-        {
-
-        }
-
-        public string Get128Key()
-        {
-            string key = new string(string.Join("", Enumerable.Repeat(0, 100).Select(n => (char)new Random().Next(127))));
-            return key;
         }
     }
 
