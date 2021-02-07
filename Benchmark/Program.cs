@@ -28,7 +28,6 @@ namespace Benchmark
     //    public byte[] Md5() => md5.ComputeHash(data);
     //}
 
-
     // [MemoryDiagnoser]    
     /// <summary>
     /// Benchmarks string concantenation in C#
