@@ -30,18 +30,17 @@ Performance is relative to ***your*** environment.  Each run produces a result.
 
 Single Target
 
-``` ini
-
+```
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.1316 (1909/November2018Update/19H2)
 Intel Core i7-6700HQ CPU 2.60GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
 .NET Core SDK=5.0.102
   [Host]     : .NET Core 5.0.2 (CoreCLR 5.0.220.61120, CoreFX 5.0.220.61120), X64 RyuJIT  [AttachedDebugger]
   DefaultJob : .NET Core 5.0.2 (CoreCLR 5.0.220.61120, CoreFX 5.0.220.61120), X64 RyuJIT
+```
 
 Multiple Targets
 
-``` ini
-
+```
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.1316 (1909/November2018Update/19H2)
 Intel Core i7-6700HQ CPU 2.60GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
 .NET Core SDK=5.0.102
@@ -49,6 +48,7 @@ Intel Core i7-6700HQ CPU 2.60GHz (Skylake), 1 CPU, 8 logical and 4 physical core
   .NET Core 2.2 : .NET Core 2.2.8 (CoreCLR 4.6.28207.03, CoreFX 4.6.28208.02), X64 RyuJIT
   .NET Core 3.1 : .NET Core 3.1.11 (CoreCLR 4.700.20.56602, CoreFX 4.700.20.56604), X64 RyuJIT
   .NET Core 5.0 : .NET Core 5.0.2 (CoreCLR 5.0.220.61120, CoreFX 5.0.220.61120), X64 RyuJIT
+```
 
 ### Benchmark 1 (String Concatenation)
 The C# developer concatenates five small strings:  "a", "b", "c", "d", "e".
@@ -72,10 +72,10 @@ The C# developer concatenates five small strings:  "a", "b", "c", "d", "e".
 |     StringBuilderAppendChar |  64.14 ns | 1.367 ns |  1.824 ns |  63.34 ns | 0.0459 |     - |     - |     144 B |
 | StringBuilderAppendCapacity |  83.71 ns | 1.770 ns |  3.282 ns |  83.90 ns | 0.0433 |     - |     - |     136 B |
 |     StringBuilderAppendJoin | 142.85 ns | 2.947 ns |  2.757 ns | 143.79 ns | 0.0942 |     - |     - |     296 B |
-
+```
 <p>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation-barplot.png" alt="BarPlot" width="100" height="100"/>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation-boxplot.png" alt="BoxPlot" width="100" height="100"/>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation-barplot.png" alt="BarPlot" width="150" height="150"/>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation-boxplot.png" alt="BoxPlot" width="150" height="150"/>
 </p>
 
 Conclusion:  The results show StringBuilder is best for concatenating strings in this scenario.
@@ -91,10 +91,10 @@ The C# developer concatenates five 64-bit hexadecimal strings:  "217A25432A462D4
 | StringBuilder | 191.40 ns |  3.886 ns |  8.448 ns | 187.74 ns | 0.2294 |     - |     - |     720 B |
 |       SB_Char | 304.08 ns | 15.164 ns | 44.711 ns | 304.60 ns | 0.2346 |     - |     - |     736 B |
 |   SB_Capacity | 157.65 ns |  4.886 ns | 13.941 ns | 151.95 ns | 0.2906 |     - |     - |     912 B |
-
+```
 <p>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation64-barplot.png" alt="BarPlot" width="100" height="100"/>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation64-boxplot.png" alt="BoxPlot" width="100" height="100"/>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation64-barplot.png" alt="BarPlot" width="150" height="150"/>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation64-boxplot.png" alt="BoxPlot" width="150" height="150"/>
 </p>
 
 Conclusion:  The results show StringJoin is best for concatenating strings in this scenario.
@@ -107,9 +107,11 @@ The C# developer concatenates five 256-bit hexadecimal strings:  "5266556A586E32
 |-------------- |---------:|--------:|---------:|---------:|-------:|------:|------:|----------:|
 |    StringJoin | 139.2 ns | 2.80 ns |  4.43 ns | 138.8 ns | 0.2346 |     - |     - |     736 B |
 | StringBuilder | 362.6 ns | 8.33 ns | 23.91 ns | 355.2 ns | 0.6881 |     - |     - |    2160 B |
-
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation256-barplot.png" alt="BarPlot" width="100" height="100"/>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation256-boxplot.png" alt="BoxPlot" width="100" height="100"/>
+```
+<p>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation256-barplot.png" alt="BarPlot" width="150" height="150"/>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringConcatenation256-boxplot.png" alt="BoxPlot" width="150" height="150"/>
+</p>
 
 Conclusion:  The results show StringJoin is best for concatenating strings in this scenario.
 
@@ -122,13 +124,13 @@ The C# developer concatenates five small strings:  "a", "b", "c", "d", "e".
 | StringBuilder | .NET Core 2.2 | .NET Core 2.2 | 73.82 ns | 2.753 ns | 7.855 ns |  1.05 |    0.13 | 0.0483 |     - |     - |     152 B |
 | StringBuilder | .NET Core 3.1 | .NET Core 3.1 | 73.12 ns | 3.010 ns | 8.734 ns |  1.04 |    0.15 | 0.0459 |     - |     - |     144 B |
 | StringBuilder | .NET Core 5.0 | .NET Core 5.0 | 70.68 ns | 2.235 ns | 6.555 ns |  1.00 |    0.00 | 0.0458 |     - |     - |     144 B |
-
+```
 <p>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-barplot.png" alt="BarPlot" width="100" height="100"/>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-boxplot.png" alt="BoxPlot" width="100" height="100"/>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-StringBuilder-cummean.png" alt="Cummean" width="100" height="100"/>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-StringBuilder-density.png" alt="Density" width="100" height="100"/>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-StringBuilder-facetTimelineSmooth.png" alt="Timeline" width="100" height="100"/> 
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-barplot.png" alt="BarPlot" width="150" height="150"/>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-boxplot.png" alt="BoxPlot" width="150" height="150"/>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-StringBuilder-cummean.png" alt="Cummean" width="150" height="150"/>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-StringBuilder-density.png" alt="Density" width="150" height="150"/>
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringBuilderJob-StringBuilder-facetTimelineSmooth.png" alt="Timeline" width="150" height="150"/> 
 </p>
 
 Conclusion: The results show .NET Core 5.0 is the best runtime in this scenario.
@@ -142,13 +144,13 @@ The C# developer concatenates five 256-bit hexadecimal strings:  "5266556A586E32
 | StringJoin | .NET Core 2.2 | .NET Core 2.2 | 211.0 ns | 5.10 ns | 14.86 ns |  1.32 |    0.12 | 0.2363 |     - |     - |     744 B |
 | StringJoin | .NET Core 3.1 | .NET Core 3.1 | 183.8 ns | 5.36 ns | 15.55 ns |  1.17 |    0.11 | 0.2346 |     - |     - |     736 B |
 | StringJoin | .NET Core 5.0 | .NET Core 5.0 | 159.1 ns | 3.27 ns |  8.67 ns |  1.00 |    0.00 | 0.2346 |     - |     - |     736 B |
-
+```
 <p>
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-barplot.png" alt="BarPlot" width="100" height="100">
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-boxplot.png" alt="BoxPlot" width="100" height="100">
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-StringJoin-cummean.png" alt="Cummean" width="100" height="100">
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-StringJoin-density.png" alt="Density" width="100" height="100">
-<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-StringJoin-facetTimelineSmooth.png" alt="Timeline" width="100" height="100"> 
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-barplot.png" alt="BarPlot" width="150" height="150">
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-boxplot.png" alt="BoxPlot" width="150" height="150">
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-StringJoin-cummean.png" alt="Cummean" width="150" height="150">
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-StringJoin-density.png" alt="Density" width="150" height="150">
+<img src="https://github.com/rdw100/Benchmark/blob/master/Benchmark/img/Benchmark.StringJob-StringJoin-facetTimelineSmooth.png" alt="Timeline" width="150" height="150"> 
 </p>
 
 Conclusion: The results show .NET Core 5.0 is the best runtime in this scenario.
