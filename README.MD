@@ -1,5 +1,5 @@
 # Benchmark
-The Benchmark demonstration project was created using Visual Studio 2019 16.8.4, .NET 5, & BenchMarkDotNet v0.12.1. The objective is to demonstrate Benchmark.Net in a .NET 5 application using String and StringBuilder concatenation.
+The Benchmark demonstration project was created using Visual Studio 2019 16.8.4, .NET 5, & Benchmark.Net v0.12.1. The objective is to demonstrate Benchmark.Net in a .NET 5 application using String and StringBuilder concatenation.
 
 ## Prerequisites
 Additional steps for running RPlotExporter in a Benchmark.Net Visual Studio solution on a Windows machine.
