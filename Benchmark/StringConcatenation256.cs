@@ -9,6 +9,8 @@ namespace Benchmark
     /// </summary>
     /// <remarks>The C# developer concatenates five 256-bit hexadecimal strings.</remarks>
     [MemoryDiagnoser]
+    [Config(typeof(Config))]
+    [RPlotExporter]
     public class StringConcatenation256
     {
         public string Data1 { get; set; }
@@ -84,7 +86,6 @@ namespace Benchmark
                           + Data4.ToString() + " "
                           + Data5.ToString();
 
-        [Benchmark]
         public string StringConcatenate()
         {
             return string.Concat(Data1, " ", Data2, " ", Data3, " ", Data4, " ", Data5);
@@ -103,6 +104,12 @@ namespace Benchmark
             return string.Format("{0} {1} {2} {3} {4}", Data1, Data2, Data3, Data4, Data5);
         }
 
+        [Benchmark(Description = "StringBuilder")]
+        public string StringBuilderInit()
+        {
+            StringBuilder builder = new StringBuilder(Data1 + " " + Data2 + " " + Data3 + " " + Data4 + " " + Data5);
+            return builder.ToString();
+        }
         public string StringBuilderAppend()
         {
             StringBuilder builder = new StringBuilder();
@@ -118,7 +125,6 @@ namespace Benchmark
             return builder.ToString();
         }
 
-        [Benchmark]
         public string StringBuilderAppendChar()
         {
             StringBuilder builder = new StringBuilder();
@@ -134,10 +140,9 @@ namespace Benchmark
             return builder.ToString();
         }
 
-        [Benchmark]
         public string StringBuilderAppendCapacity()
         {
-            StringBuilder builder = new StringBuilder(1280);
+            StringBuilder builder = new StringBuilder(1284);
             builder.Append(Data1);
             builder.Append(' ');
             builder.Append(Data2);

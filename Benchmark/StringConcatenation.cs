@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,10 @@ namespace Benchmark
     /// <summary>
     /// Benchmarks techniques for string concantenation in C#.
     /// </summary>
-    /// <remarks>The C# developer concatenates five small strings.</remarks>
-    // [SimpleJob(RunStrategy.Monitoring, launchCount: 1, warmupCount: 0, targetCount: 5)]
+    /// <remarks>The C# developer concatenates five small strings.</remarks>  
     [MemoryDiagnoser]
+    [Config(typeof(Config))]
+    [RPlotExporter]
     public class StringConcatenation
     {
         public string Data1 { get; set; }
@@ -117,6 +119,13 @@ namespace Benchmark
         }
 
         [Benchmark]
+        public string StringBuilderInit()
+        {
+            StringBuilder builder = new StringBuilder(Data1 + " " + Data2 + " " + Data3 + " " + Data4 + " " + Data5);
+            return builder.ToString(); 
+        }
+
+        [Benchmark]
         public string StringBuilderAppend()
         {
             StringBuilder builder = new StringBuilder();
@@ -136,6 +145,22 @@ namespace Benchmark
         public string StringBuilderAppendChar()
         {
             StringBuilder builder = new StringBuilder();
+            builder.Append(Data1);
+            builder.Append(' ');
+            builder.Append(Data2);
+            builder.Append(' ');
+            builder.Append(Data3);
+            builder.Append(' ');
+            builder.Append(Data4);
+            builder.Append(' ');
+            builder.Append(Data5);
+            return builder.ToString();
+        }
+
+        [Benchmark]
+        public string StringBuilderAppendCapacity()
+        {
+            StringBuilder builder = new StringBuilder(9);
             builder.Append(Data1);
             builder.Append(' ');
             builder.Append(Data2);
