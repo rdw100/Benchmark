@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <!--<TargetFramework>net5.0;</TargetFramework>-->
     <!--<TargetFrameworks>net5.0;netcoreapp3.1;net48</TargetFrameworks>-->
-  <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.2;net48</TargetFrameworks>
+  <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.2</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
