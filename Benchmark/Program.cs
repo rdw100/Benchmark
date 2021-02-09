@@ -17,14 +17,15 @@ namespace Benchmark
     {
         public static void Main(string[] args)
         {
-            #if DEBUG
-                _ = BenchmarkRunner.Run(typeof(StringConcatenation));
-                _ = BenchmarkRunner.Run(typeof(StringConcatenation64));
-                _ = BenchmarkRunner.Run(typeof(StringConcatenation256));
-                _ = BenchmarkRunner.Run(typeof(StringJob));
-            #else
-                _ = BenchmarkRunner.Run(typeof(StringBuilderJob));
-            #endif            
+#if DEBUG
+            _ = BenchmarkRunner.Run(typeof(StringConcatenation));
+            _ = BenchmarkRunner.Run(typeof(StringConcatenation64));
+            _ = BenchmarkRunner.Run(typeof(StringConcatenation256));
+            _ = BenchmarkRunner.Run(typeof(StringJob));
+#else
+            _ = BenchmarkRunner.Run(typeof(StringJob));
+           // _ = BenchmarkRunner.Run(typeof(StringBuilderJob));
+#endif
         }
     }
 

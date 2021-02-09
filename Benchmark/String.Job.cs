@@ -14,7 +14,7 @@ namespace Benchmark
     /// <remarks>The C# developer concatenates five small strings.</remarks>
     [SimpleJob(runtimeMoniker: RuntimeMoniker.NetCoreApp50, baseline: true)]
     [SimpleJob(runtimeMoniker: RuntimeMoniker.NetCoreApp31)]
-    [SimpleJob(runtimeMoniker: RuntimeMoniker.NetCoreApp22)] 
+    [SimpleJob(runtimeMoniker: RuntimeMoniker.NetCoreApp22)]
     [MemoryDiagnoser]
     [Config(typeof(Config))]
     [RPlotExporter]
@@ -52,32 +52,10 @@ namespace Benchmark
             Data5 = data[4];
         }
 
-        //[Benchmark]
-        public string StringConcatenate()
-        {
-            return string.Concat(Data1, " ", Data2, " ", Data3, " ", Data4, " ", Data5);
-        }
-
-        //[Benchmark]
+        [Benchmark]
         public string StringJoin()
         {
             return string.Join(" ", Data1, Data2, Data3, Data4, Data5);
-        }
-
-        [Benchmark]
-        public string StringBuilder()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append(Data1);
-            builder.Append(' ');
-            builder.Append(Data2);
-            builder.Append(' ');
-            builder.Append(Data3);
-            builder.Append(' ');
-            builder.Append(Data4);
-            builder.Append(' ');
-            builder.Append(Data5);
-            return builder.ToString();
         }
 
         [GlobalCleanup]
