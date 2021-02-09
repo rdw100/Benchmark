@@ -5,8 +5,8 @@ The Benchmark demonstration project was created using Visual Studio 2019 16.8.4,
 Additional steps for running RPlotExporter in a Benchmark.Net Visual Studio solution on a Windows machine.
 
 Set Environment Variable (System variable)
-..Variable name:  R_HOME
-..Variable value: C:\Program Files\R\R-4.0.3
+- Variable name:  R_HOME
+- Variable value: C:\Program Files\R\R-4.0.3
 
 Install Perl on Windows (32-bit & 64-bit) 
 https://learn.perl.org/installing/windows.html
