@@ -24,11 +24,11 @@ Setup instructions to run this project are as follows:
 3. Start Debugging
 
 ## Summary
-The scenarios below evaluate the best use of string concatenation scenarios for either String or StringBuilder.
+The Benchmark scenarios 1-3 below evaluate the best use of either String or String Builder for small to large concatenation scenarios.  Benchmarks 4-5 evaluate .NET Core performance for only StringBuilder and String.
 
 Performance is relative to ***your*** environment.  Each run produces a result.
 
-Single Target
+Single Framework Target
 
 ```
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.1316 (1909/November2018Update/19H2)
@@ -38,7 +38,7 @@ Intel Core i7-6700HQ CPU 2.60GHz (Skylake), 1 CPU, 8 logical and 4 physical core
   DefaultJob : .NET Core 5.0.2 (CoreCLR 5.0.220.61120, CoreFX 5.0.220.61120), X64 RyuJIT
 ```
 
-Multiple Targets
+Multiple Framework Targets
 
 ```
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.1316 (1909/November2018Update/19H2)
